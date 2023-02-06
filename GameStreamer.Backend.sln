@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3BB26758-E35A-4E5C-BF4C-70E9CE85775F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStreamer.Backend", "src\GameStreamer.Backend.csproj", "{6F2E9865-CF1C-4A82-8867-B2DF552F4AFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F2E9865-CF1C-4A82-8867-B2DF552F4AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F2E9865-CF1C-4A82-8867-B2DF552F4AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F2E9865-CF1C-4A82-8867-B2DF552F4AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F2E9865-CF1C-4A82-8867-B2DF552F4AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6F2E9865-CF1C-4A82-8867-B2DF552F4AFB} = {3BB26758-E35A-4E5C-BF4C-70E9CE85775F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69F50C04-E687-46C8-ADE3-40E8D28C4A12}
+	EndGlobalSection
+EndGlobal
