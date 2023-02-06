@@ -23,13 +23,14 @@ namespace GameStreamer.Backend.Services
 
             if (addedPlayerDto.IsRandomGameMode)
             {
-                var halfEmptyRoom = _gameRepo.GetFirstIncompleteRoom();
-                
+                //var halfEmptyRoom = _gameRepo.GetFirstIncompleteRoom();
+                RoomDto halfEmptyRoom = null;
+
                 if (halfEmptyRoom != null)
                 {
                     halfEmptyRoom.RoomPlayers.Append(addedPlayerDto);
                     
-                    _gameRepo.UpdateRoom(halfEmptyRoom);
+                    //_gameRepo.UpdateRoom(halfEmptyRoom);
                 }
                 else
                 {
@@ -40,7 +41,7 @@ namespace GameStreamer.Backend.Services
                         RoomGuid = _hashService.CalculateHashCodeFrom(newRoomHubId)
                     };
 
-                    _gameRepo.AddRoom(newRoom);
+                    //_gameRepo.AddRoom(newRoom);
                 }
                 responseDto = new PlayerDataResponseDTO { };
             }
