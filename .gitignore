@@ -2,3 +2,15 @@
 
 src/obj/
 src/bin/
+/src/GameStreamer.Domain/obj
+/src/GameStreamer.Application/bin/Debug/net6.0
+/src/GameStreamer.Application/obj
+/src/GameStreamer.Domain/bin/Debug/net6.0
+/src/GameStreamer.Infrastructure/bin/Debug/net6.0
+/src/GameStreamer.Infrastructure/obj
+/src/GameStreamer.Presentation/bin/Debug/net6.0
+/src/GameStreamer.Presentation/obj
+/src/GameStreamer.UI/bin/Debug/net6.0
+/src/GameStreamer.UI/obj
+/tests/GameStreamer.Backend.Architecture.Tests/bin/Debug/net6.0
+/tests/GameStreamer.Backend.Architecture.Tests/obj
