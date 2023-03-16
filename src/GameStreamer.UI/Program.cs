@@ -7,6 +7,7 @@ builder.Services.InstallServices(
     builder.Configuration,
     typeof(IServiceCollection).Assembly);
 
+
 builder
     .Services
     .Scan(
@@ -66,7 +67,7 @@ app.Run();
 
 //    containerBuilder.Register(context =>
 //                    new DbContextOptionsBuilder<GameStreamerContext>()
-//                        .UseNpgsql("Host=localhost;Database=xo_game_gamestreamerservice;User Id=local;Password=local")
+//                        .UseNpgsql("Host=localhost;Database=123")
 //                        .Options)
 //                .As<DbContextOptions<GameStreamerContext>>().SingleInstance();
 

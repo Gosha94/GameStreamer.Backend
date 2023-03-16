@@ -1,11 +1,11 @@
-﻿using GameStreamer.Domain.Entities;
-using MediatR;
+﻿using GameStreamer.Application.Abstractions.Messaging;
+using GameStreamer.Domain.Entities;
 using GameStreamer.Domain.Repositories;
 using GameStreamer.Domain.Shared;
 
 namespace GameStreamer.Application.Invitations.Commands.SendInvitation;
 
-internal sealed class SendInvitationCommandHandler : IRequestHandler<SendInvitationCommand, Unit>
+internal sealed class SendInvitationCommandHandler : ICommandHandler<SendInvitationCommand, Result>
 {
 
     private readonly IRoomRepository _roomRepository;
@@ -28,7 +28,7 @@ internal sealed class SendInvitationCommandHandler : IRequestHandler<SendInvitat
         _emailService = emailService;
     }
 
-    public async Task<Unit> Handle(SendInvitationCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(SendInvitationCommand request, CancellationToken cancellationToken)
     {
         var incomer = await _incomerRepository.GetByIdAsync(request.IncomerId, cancellationToken);
         var room = await _roomRepository
@@ -36,7 +36,7 @@ internal sealed class SendInvitationCommandHandler : IRequestHandler<SendInvitat
 
         if (incomer is null || room is null)
         {
-            return Unit.Value;
+            return Result.Failure(Error.NullValue);
         }
 
         Result<Invitation> invitationResult = room.SendInvitation(incomer);
@@ -45,7 +45,7 @@ internal sealed class SendInvitationCommandHandler : IRequestHandler<SendInvitat
         {
             // Log Error
 
-            return Unit.Value;
+            return Result.Failure<Invitation>(invitationResult.Error);
         }
 
         _invitationRepository.Add(invitationResult.Value);
@@ -54,6 +54,6 @@ internal sealed class SendInvitationCommandHandler : IRequestHandler<SendInvitat
 
         await _emailService.SendInvitationSentEmailAsync(incomer, room, cancellationToken);
 
-        return Unit.Value;
+        return Result.Success(invitationResult.IsSuccess);
     }
 }

@@ -23,25 +23,16 @@ public class Result
     public bool IsFailure => !IsSuccess;
 
     public Error Error { get; }
-
-    public static Result Success() => new(true, Error.None);
-
-    public static Result Failure(Error error) => new(false, error);
-
-    public static Result<TValue> Success<TValue>(TValue value) => (Result<TValue>)Success();
-
-    public static Result<TValue> Failure<TValue>(Error error) => (Result<TValue>)Failure(error);
-
-    public static Result<TValue> Create<TValue>(TValue? value)
-    {
-        if (value is null)
-        {
-            return Failure<TValue>(Error.NullValue);
-        }
-
-        return Success<TValue>(value);
-    }
-
     
+    public static Result Success() => new Result(true, Error.None);
 
+    public static Result<TValue> Success<TValue>(TValue value) => new Result<TValue>(value, true, Error.None);
+
+    public static Result<TValue> Create<TValue>(TValue value, Error error)
+        where TValue : class
+        => value is null ? Failure<TValue>(error) : Success(value);
+
+    public static Result Failure(Error error) => new Result(false, error);
+
+    public static Result<TValue> Failure<TValue>(Error error) => new Result<TValue>(default!, false, error);
 }

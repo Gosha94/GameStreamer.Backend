@@ -22,10 +22,9 @@ public sealed class IncomersController : ApiController
         var command = new CreateIncomerCommand(
             "Test_NickName");
 
-        //Result<Guid> result = await Sender.Send(command, cancellationToken);
+        var result = await Sender.Send(command, cancellationToken);
 
-        //return result.IsSuccess ? Ok() : BadRequest(result.Error);
-        return Ok(Guid.Empty);
+        return result.IsSuccess ? Ok() : BadRequest(result.Error);
     }
 
     [HttpGet("{id}")]
@@ -33,10 +32,9 @@ public sealed class IncomersController : ApiController
     {
         var query = new GetIncomerByIdQuery(id);
 
-        //Result<IncomerResponse> response = (Result<IncomerResponse>)await Sender.Send(query, cancellationToken);
+        Result<IncomerResponse> response = (Result<IncomerResponse>)await Sender.Send(query, cancellationToken);
 
-        //return response.IsSuccess ? Ok(response.Value) : NotFound(response.Error);
-        return Ok(new IncomerResponse(id, "FakeUser_000"));
+        return response.IsSuccess ? Ok(response.Value) : NotFound(response.Error);
     }
 
 }

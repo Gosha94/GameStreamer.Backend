@@ -1,12 +1,12 @@
-﻿using GameStreamer.Application.Abstractions.Messaging;
-using GameStreamer.Domain.Shared;
+﻿using GameStreamer.Domain.Shared;
 using GameStreamer.Domain.Entities;
 using GameStreamer.Domain.ValueObjects;
 using GameStreamer.Domain.Repositories;
+using GameStreamer.Application.Abstractions.Messaging;
 
 namespace GameStreamer.Application.Incomers.Commands.CreateIncomer;
 
-internal sealed class CreateIncomerCommandHandler : ICommandHandler<CreateIncomerCommand, Guid>
+internal sealed class CreateIncomerCommandHandler : ICommandHandler<CreateIncomerCommand, Result>
 {
 
     private readonly IIncomerRepository _incomerRepository;
@@ -21,15 +21,15 @@ internal sealed class CreateIncomerCommandHandler : ICommandHandler<CreateIncome
     }
 
 
-    public async Task<Result<Guid>> Handle(CreateIncomerCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(CreateIncomerCommand request, CancellationToken cancellationToken)
     {
-        var nickNameResult = NickName.Create(request.NickName);
+        Result<NickName> nickNameResult = NickName.Create(request.NickName);
 
         if (nickNameResult.IsFailure)
         {
             // Log Error
 
-            return Result.Failure<Guid>(nickNameResult.Error);
+            return Result.Failure(nickNameResult.Error);
         }
 
         var incomer = Incomer.Create(
@@ -39,6 +39,6 @@ internal sealed class CreateIncomerCommandHandler : ICommandHandler<CreateIncome
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return incomer.Id;
+        return Result.Success();
     }
 }

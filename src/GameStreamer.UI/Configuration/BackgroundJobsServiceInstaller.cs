@@ -9,7 +9,7 @@ namespace GameStreamer.UI.Configuration
             //services.AddScoped<ICustomJobService, CustomJobService>();
 
             //services.AddHangfire(config =>
-            //    config.UsePostgreSqlStorage("Host=localhost;Database=xo_game_gamestreamerservice;User Id=local;Password=local"));
+            //    config.UsePostgreSqlStorage("Host=localhost;Database=local;"));
 
             //services.AddHangfireServer();
         }
