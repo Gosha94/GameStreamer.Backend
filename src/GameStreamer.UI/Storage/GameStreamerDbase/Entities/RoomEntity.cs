@@ -1,6 +1,6 @@
-﻿using GameStreamer.Backend.DTOs.DataAccess;
+﻿using GameStreamer.DTOs.DataAccess;
 
-namespace GameStreamer.Backend.Storage.GameStreamerDbase.Entities
+namespace GameStreamer.Storage.GameStreamerDbase.Entities
 {
 
     /// <summary>

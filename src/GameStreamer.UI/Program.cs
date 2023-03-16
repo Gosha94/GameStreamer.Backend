@@ -1,12 +1,14 @@
 ﻿using Serilog;
+using GameStreamer.Infrastructure;
 using GameStreamer.UI.Configuration;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
 
-builder.Services.InstallServices(
+services.InstallServices(
     builder.Configuration,
     typeof(IServiceCollection).Assembly);
-
 
 builder
     .Services
@@ -18,6 +20,18 @@ builder
             .AsImplementedInterfaces()
             .WithScopedLifetime());
 
+services.AddInfrastructureLayer(builder.Configuration);
+
+services.AddMediatR(GameStreamer.Application.AssemblyReference.Assembly);
+
+services
+    .AddSwaggerGen()
+    .AddEndpointsApiExplorer();
+
+services
+    .AddControllers()
+    .AddApplicationPart(GameStreamer.Presentation.AssemblyReference.Assembly);
+
 //builder.Host.UseSerilog((context, configuration) =>
 //    configuration.ReadFrom.Configuration(context.Configuration));
 
@@ -25,6 +39,8 @@ WebApplication app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -48,7 +64,7 @@ if (app.Environment.IsDevelopment())
 
 //InitializeDatabase(app);
 
-app.UseSerilogRequestLogging();
+//app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 
@@ -59,28 +75,3 @@ app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();
-
-//void ConfigureGameStreamerHost(HostBuilderContext builderContext, ContainerBuilder containerBuilder)
-//{
-
-//    #region Persistence Setup
-
-//    containerBuilder.Register(context =>
-//                    new DbContextOptionsBuilder<GameStreamerContext>()
-//                        .UseNpgsql("Host=localhost;Database=123")
-//                        .Options)
-//                .As<DbContextOptions<GameStreamerContext>>().SingleInstance();
-
-//    containerBuilder.RegisterType<GameStreamerContext>().InstancePerDependency();
-
-//    #endregion
-
-//}
-
-void InitializeDatabase(IApplicationBuilder application)
-{
-    //using (var scope = application.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-    //{
-    //    scope.ServiceProvider.GetRequiredService<GameStreamerContext>().Database.Migrate();
-    //}
-}

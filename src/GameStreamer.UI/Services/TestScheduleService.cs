@@ -1,15 +1,15 @@
-﻿using GameStreamer.Backend.Hubs;
+﻿using GameStreamer.Hubs;
 using Microsoft.AspNetCore.SignalR;
-using GameStreamer.Backend.Interfaces;
-using GameStreamer.Backend.DTOs;
-using GameStreamer.Backend.Storage;
-using GameStreamer.Backend.Storage.GameStreamerDbase.Entities;
-using Hangfire;
-using GameStreamer.Backend.Jobs;
+using GameStreamer.Interfaces;
+using GameStreamer.DTOs;
+using GameStreamer.Storage;
+using GameStreamer.Storage.GameStreamerDbase.Entities;
+//using Hangfire;
+using GameStreamer.Jobs;
 using MassTransit;
-using GameStreamer.Backend.DTOs.MessageBus.Consume;
+using GameStreamer.DTOs.MessageBus.Consume;
 
-namespace GameStreamer.Backend.Services
+namespace GameStreamer.Services
 {
     public class TestScheduleService : BackgroundService
     {
@@ -21,8 +21,8 @@ namespace GameStreamer.Backend.Services
         private readonly IGameStreamRepository _gameStreamRepository;
 
         private readonly ICustomJobService _customJobService;
-        private readonly IBackgroundJobClient _backgroundJobClient;
-        private readonly IRecurringJobManager _recurringJobManager;
+        //private readonly IBackgroundJobClient _backgroundJobClient;
+        //private readonly IRecurringJobManager _recurringJobManager;
 
         private readonly IPublishEndpoint _publishEndpoint;
 
@@ -34,8 +34,8 @@ namespace GameStreamer.Backend.Services
             IRoomManager roomsManager,
             IGameStreamRepository gameStreamRepository,
             ICustomJobService customJobService,
-            IBackgroundJobClient backgroundJobClient,
-            IRecurringJobManager recurringJobManager,
+            //IBackgroundJobClient backgroundJobClient,
+            //IRecurringJobManager recurringJobManager,
 
             IPublishEndpoint publishEndpoint)
         {
@@ -45,8 +45,8 @@ namespace GameStreamer.Backend.Services
             _gameStreamRepository = gameStreamRepository;
 
             _customJobService = customJobService;
-            _backgroundJobClient = backgroundJobClient;
-            _recurringJobManager = recurringJobManager;
+            //_backgroundJobClient = backgroundJobClient;
+            //_recurringJobManager = recurringJobManager;
 
             _publishEndpoint = publishEndpoint;
         }
@@ -55,7 +55,7 @@ namespace GameStreamer.Backend.Services
         {
             var timer = new PeriodicTimer(TimeSpan.FromSeconds(10));
 
-            _recurringJobManager.AddOrUpdate("clearUnactiveRoomsAndPlayersData", () => _customJobService.ReccuringJob(), Cron.HourInterval(3));
+            //_recurringJobManager.AddOrUpdate("clearUnactiveRoomsAndPlayersData", () => _customJobService.ReccuringJob(), Cron.HourInterval(3));
 
             while (await timer.WaitForNextTickAsync(stoppingToken))
             {
@@ -91,7 +91,7 @@ namespace GameStreamer.Backend.Services
                 //        }
                 //    });
 
-                _backgroundJobClient.Enqueue(() => _customJobService.FireAndForgetJob());
+                //_backgroundJobClient.Enqueue(() => _customJobService.FireAndForgetJob());
 
             }
         }

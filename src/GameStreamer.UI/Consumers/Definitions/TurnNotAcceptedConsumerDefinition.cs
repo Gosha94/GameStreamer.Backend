@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 
-namespace GameStreamer.Backend.Consumers.Definitions
+namespace GameStreamer.Consumers.Definitions
 {
     public class TurnNotAcceptedConsumerDefinition : ConsumerDefinition<TurnDeniedConsumer>
     {

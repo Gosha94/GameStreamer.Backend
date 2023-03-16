@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using GameStreamer.Backend.Storage.GameStreamerDbase.Mapping;
+using GameStreamer.Storage.GameStreamerDbase.Mapping;
 
-namespace GameStreamer.Backend.Storage.GameStreamerDbase
+namespace GameStreamer.Storage.GameStreamerDbase
 {
     public class GameStreamerContext : DbContext
     {

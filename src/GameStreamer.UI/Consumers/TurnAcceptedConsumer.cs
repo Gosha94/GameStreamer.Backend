@@ -1,8 +1,8 @@
 ﻿using MassTransit;
 using Newtonsoft.Json;
-using GameStreamer.Backend.DTOs.MessageBus.Consume;
+using GameStreamer.DTOs.MessageBus.Consume;
 
-namespace GameStreamer.Backend.Consumers
+namespace GameStreamer.Consumers
 {
     public class TurnAcceptedConsumer : IConsumer<TurnAcceptedDto>
     {

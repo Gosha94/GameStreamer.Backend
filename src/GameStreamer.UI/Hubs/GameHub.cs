@@ -1,8 +1,8 @@
-﻿using GameStreamer.Backend.DTOs.GameClient;
-using GameStreamer.Backend.Interfaces;
+﻿using GameStreamer.DTOs.GameClient;
+using GameStreamer.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 
-namespace GameStreamer.Backend.Hubs
+namespace GameStreamer.Hubs
 {
     public class GameHub : Hub<IGameHub>
     {

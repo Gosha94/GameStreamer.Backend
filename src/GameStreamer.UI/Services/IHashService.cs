@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.Backend.Services
+﻿namespace GameStreamer.Services
 {
     public interface IHashService
     {

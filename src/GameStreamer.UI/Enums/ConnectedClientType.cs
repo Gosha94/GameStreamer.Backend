@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.Backend.Enums
+﻿namespace GameStreamer.Enums
 {
 
     /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.Backend.Models.Common
+﻿namespace GameStreamer.Models.Common
 {
     public enum GameFraction
     {

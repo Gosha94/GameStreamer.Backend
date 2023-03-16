@@ -5,16 +5,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["GameStreamer.Backend.csproj", "."]
-RUN dotnet restore "./GameStreamer.Backend.csproj"
+COPY ["GameStreamer.csproj", "."]
+RUN dotnet restore "./GameStreamer.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "GameStreamer.Backend.csproj" -c Release -o /app/build
+RUN dotnet build "GameStreamer.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "GameStreamer.Backend.csproj" -c Release -o /app/publish
+RUN dotnet publish "GameStreamer.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "GameStreamer.Backend.dll"]
+ENTRYPOINT ["dotnet", "GameStreamer.dll"]

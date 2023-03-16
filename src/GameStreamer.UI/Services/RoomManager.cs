@@ -1,6 +1,6 @@
-﻿using GameStreamer.Backend.DTOs;
+﻿using GameStreamer.DTOs;
 
-namespace GameStreamer.Backend.Services
+namespace GameStreamer.Services
 {
     public class RoomManager : IRoomManager
     {

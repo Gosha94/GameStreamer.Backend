@@ -1,10 +1,10 @@
 ﻿using MassTransit;
 using Microsoft.AspNetCore.SignalR;
-using GameStreamer.Backend.Services;
-using GameStreamer.Backend.Interfaces;
-using GameStreamer.Backend.DTOs.DataAccess;
+using GameStreamer.Services;
+using GameStreamer.Interfaces;
+using GameStreamer.DTOs.DataAccess;
 
-namespace GameStreamer.Backend.Hubs
+namespace GameStreamer.Hubs
 {
     public class RoomsHub : Hub<IRoomsHub>
     {

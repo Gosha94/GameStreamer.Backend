@@ -1,8 +1,7 @@
 ﻿using Xunit;
 using NetArchTest.Rules;
 
-
-namespace GameStreamer.Backend.Architecture.Tests;
+namespace GameStreamer.Architecture.Tests;
 
 public class ArchitectureShould
 {

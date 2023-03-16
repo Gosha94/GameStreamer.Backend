@@ -1,11 +1,11 @@
-﻿using GameStreamer.Backend.DTOs;
-using GameStreamer.Backend.DTOs.DataAccess;
-using GameStreamer.Backend.Models;
-using GameStreamer.Backend.Storage.GameStreamerDbase;
-using GameStreamer.Backend.Storage.GameStreamerDbase.Entities;
+﻿using GameStreamer.DTOs;
+using GameStreamer.DTOs.DataAccess;
+using GameStreamer.Models;
+using GameStreamer.Storage.GameStreamerDbase;
+using GameStreamer.Storage.GameStreamerDbase.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace GameStreamer.Backend.Storage
+namespace GameStreamer.Storage
 {
     public class GameStreamRepository : IGameStreamRepository
     {

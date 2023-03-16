@@ -1,4 +1,4 @@
-﻿using Hangfire;
+﻿//using Hangfire;
 
 namespace GameStreamer.UI.Configuration
 {
@@ -9,7 +9,7 @@ namespace GameStreamer.UI.Configuration
             //services.AddScoped<ICustomJobService, CustomJobService>();
 
             //services.AddHangfire(config =>
-            //    config.UsePostgreSqlStorage("Host=localhost;Database=local;"));
+            //    config.UsePostgreSqlStorage("GameStreamerServiceDatabase_Local"));
 
             //services.AddHangfireServer();
         }

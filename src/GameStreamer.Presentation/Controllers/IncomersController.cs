@@ -11,7 +11,7 @@ namespace GameStreamer.Presentation.Controllers;
 public sealed class IncomersController : ApiController
 {
 
-    public IncomersController(ISender sender)
+    public IncomersController(IMediator sender)
         : base(sender)
     { }
 

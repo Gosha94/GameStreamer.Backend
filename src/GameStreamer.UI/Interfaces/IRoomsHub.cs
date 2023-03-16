@@ -1,6 +1,6 @@
-﻿using GameStreamer.Backend.DTOs;
+﻿using GameStreamer.DTOs;
 
-namespace GameStreamer.Backend.Interfaces
+namespace GameStreamer.Interfaces
 {
     public interface IRoomsHub
     {

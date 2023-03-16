@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.Backend.Interfaces
+﻿namespace GameStreamer.Interfaces
 {
     public interface IGameHub
     {

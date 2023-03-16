@@ -1,6 +1,6 @@
-﻿using GameStreamer.Backend.Models.Common;
+﻿using GameStreamer.Models.Common;
 
-namespace GameStreamer.Backend.DTOs.GameClient
+namespace GameStreamer.DTOs.GameClient
 {
     public class PlayerMadeTurnDto
     {

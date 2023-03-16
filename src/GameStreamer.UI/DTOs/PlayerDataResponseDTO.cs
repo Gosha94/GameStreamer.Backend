@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.Backend.DTOs
+﻿namespace GameStreamer.DTOs
 {
     public class PlayerDataResponseDTO
     {

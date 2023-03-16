@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.Backend.DTOs.Hub
+﻿namespace GameStreamer.DTOs.Hub
 {
     public class PlayerFromHubDto : PlayerBaseDto
     {

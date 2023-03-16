@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace GameStreamer.Backend.Hubs
+namespace GameStreamer.Hubs
 {
     public class ChatHub : Hub
     {

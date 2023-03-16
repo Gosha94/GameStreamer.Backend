@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.Backend.Jobs
+﻿namespace GameStreamer.Jobs
 {
     public interface ICustomJobService
     {

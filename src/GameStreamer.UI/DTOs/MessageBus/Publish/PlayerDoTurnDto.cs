@@ -1,6 +1,6 @@
-﻿using GameStreamer.Backend.Models.Common;
+﻿using GameStreamer.Models.Common;
 
-namespace GameStreamer.Backend.DTOs.MessageBus.Publish
+namespace GameStreamer.DTOs.MessageBus.Publish
 {
     public class PlayerDoTurnDto
     {

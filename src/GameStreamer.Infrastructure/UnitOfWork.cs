@@ -6,9 +6,9 @@ namespace GameStreamer.Infrastructure;
 internal sealed class UnitOfWork : IUnitOfWork
 {
 
-    private readonly DbContext _dbContext;
+    private readonly GameStreamerDbContext _dbContext;
 
-    public UnitOfWork(DbContext dbContext)
+    public UnitOfWork(GameStreamerDbContext dbContext)
     {
         _dbContext = dbContext;
     }

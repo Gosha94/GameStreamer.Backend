@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
 
-namespace GameStreamer.Backend.Services
+namespace GameStreamer.Services
 {
     public class HashService : IHashService
     {

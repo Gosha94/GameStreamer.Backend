@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.Backend.DTOs.DataAccess
+﻿namespace GameStreamer.DTOs.DataAccess
 {
     public class RoomDto
     {

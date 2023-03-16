@@ -1,7 +1,7 @@
-﻿using GameStreamer.Backend.DTOs;
-using GameStreamer.Backend.DTOs.DataAccess;
+﻿using GameStreamer.DTOs;
+using GameStreamer.DTOs.DataAccess;
 
-namespace GameStreamer.Backend.Storage
+namespace GameStreamer.Storage
 {
     public interface IGameStreamRepository : IDisposable
     {

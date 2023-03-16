@@ -6,9 +6,9 @@ namespace GameStreamer.Presentation.Abstractions;
 [ApiController]
 public abstract class ApiController : ControllerBase
 {
-    protected ISender Sender { get; }
+    protected IMediator Sender { get; }
     
-    protected ApiController(ISender sender)
+    protected ApiController(IMediator sender)
     {
         Sender = sender;
     }

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace GameStreamer.Backend.Storage.GameStreamerDbase.Migrations
+namespace GameStreamer.Storage.GameStreamerDbase.Migrations
 {
     public partial class ChangedDtColumnsConstraints : Migration
     {

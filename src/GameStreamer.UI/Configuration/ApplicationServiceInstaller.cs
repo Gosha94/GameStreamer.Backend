@@ -6,7 +6,7 @@ namespace GameStreamer.UI.Configuration
     {
         public void Install(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddMediatR(GameStreamer.Application.AssemblyReference.Assembly);
+            
 
             services.Configure<ConsoleLifetimeOptions>(options => options.SuppressStatusMessages = true);
 
