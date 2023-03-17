@@ -37,8 +37,20 @@ services
 
 WebApplication app = builder.Build();
 
+var logger = app.Logger;
+var lifetime = app.Lifetime;
+var env = app.Environment;
+
+lifetime.ApplicationStarted
+    .Register(() =>
+    logger
+        .LogInformation(
+        $"The application {env.ApplicationName} is started with Environment: {app.Environment.EnvironmentName}")
+);
+
 if (app.Environment.IsDevelopment())
 {
+
     app.UseDeveloperExceptionPage();
 
     app.UseSwagger();
@@ -50,17 +62,6 @@ if (app.Environment.IsDevelopment())
 //app.MapHub<RoomsHub>("/lobbies");
 
 //app.MapHub<GameHub>("/game");
-
-//var logger = app.Logger;
-//var lifetime = app.Lifetime;
-//var env = app.Environment;
-
-//lifetime.ApplicationStarted.Register(() =>
-//    logger.LogInformation(
-//        $"The application {env.ApplicationName} is started.")
-//);
-
-//app.Logger.LogInformation("GameStreamer is Running!");
 
 //InitializeDatabase(app);
 

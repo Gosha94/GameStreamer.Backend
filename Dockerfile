@@ -1,62 +1,29 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src/GameStreamer.Backend
+
+COPY *.sln .
+COPY ["src/GameStreamer.Domain/*.csproj", "./src/GameStreamer.Domain/"]
+COPY ["src/GameStreamer.Application/*.csproj", "./src/GameStreamer.Application/"]
+COPY ["src/GameStreamer.Infrastructure/*.csproj", "./src/GameStreamer.Infrastructure/"]
+COPY ["src/GameStreamer.Presentation/*.csproj", "./src/GameStreamer.Presentation/"]
+COPY ["src/GameStreamer.UI/*.csproj", "./src/GameStreamer.UI/"]
+
+COPY ["tests/GameStreamer.Architecture.Tests/*.csproj", "./tests/GameStreamer.Architecture.Tests/"]
+
+RUN dotnet restore -s https://api.nuget.org/v3/index.json --packages packages --ignore-failed-sources
+
+COPY ["src/GameStreamer.Domain/.", "./src/GameStreamer.Domain/"]
+COPY ["src/GameStreamer.Application/.", "./src/GameStreamer.Application/"]
+COPY ["src/GameStreamer.Infrastructure/.", "./src/GameStreamer.Infrastructure/"]
+COPY ["src/GameStreamer.Presentation/.", "./src/GameStreamer.Presentation/"]
+COPY ["src/GameStreamer.UI/.", "./src/GameStreamer.UI/"]
+
+RUN dotnet publish -c Release -o out
+
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src/GameStreamer.Backend
-
-COPY *.sln .
-COPY ["src/Ugsk.Daemon.Consent.Domain/*.csproj", "./src/Ugsk.Daemon.Consent.Domain/"]
-COPY ["src/Ugsk.Daemon.Consent.Application/*.csproj", "./src/Ugsk.Daemon.Consent.Application/"]
-COPY ["src/Ugsk.Daemon.Consent.Infrastructure/*.csproj", "./src/Ugsk.Daemon.Consent.Infrastructure/"]
-COPY ["src/Ugsk.Daemon.Consent.EntryPoint/*.csproj", "./src/Ugsk.Daemon.Consent.EntryPoint/"]
-
-COPY ["tests/Ugsk.Daemon.Consent.Architecture.Tests/*.csproj", "./tests/Ugsk.Daemon.Consent.Architecture.Tests/"]
-COPY ["tests/Ugsk.Daemon.Consent.IntegrationTests/*.csproj", "./tests/Ugsk.Daemon.Consent.IntegrationTests/"]
-COPY ["tests/UGSK.Daemon.Consent.Test/*.csproj", "./tests/UGSK.Daemon.Consent.Test/"]
-
-
-COPY ["GameStreamer.csproj", "."]
-RUN dotnet restore "./GameStreamer.csproj"
-COPY . .
-WORKDIR "/src/."
-RUN dotnet build "GameStreamer.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "GameStreamer.csproj" -c Release -o /app/publish
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "GameStreamer.dll"]
-
-# ------------------------------
-FROM artifacts.ugsk.ru:8085/mobile/runtime:5.0 AS base
-WORKDIR /app
-
-FROM artifacts.ugsk.ru:8085/mobile/sdk:5.0 AS build
-WORKDIR /app/Ugsk.Daemon.Consent
-
-COPY *.sln .
-COPY ["src/Ugsk.Daemon.Consent.Domain/*.csproj", "./src/Ugsk.Daemon.Consent.Domain/"]
-COPY ["src/Ugsk.Daemon.Consent.Application/*.csproj", "./src/Ugsk.Daemon.Consent.Application/"]
-COPY ["src/Ugsk.Daemon.Consent.Infrastructure/*.csproj", "./src/Ugsk.Daemon.Consent.Infrastructure/"]
-COPY ["src/Ugsk.Daemon.Consent.EntryPoint/*.csproj", "./src/Ugsk.Daemon.Consent.EntryPoint/"]
-
-COPY ["tests/Ugsk.Daemon.Consent.Architecture.Tests/*.csproj", "./tests/Ugsk.Daemon.Consent.Architecture.Tests/"]
-COPY ["tests/Ugsk.Daemon.Consent.IntegrationTests/*.csproj", "./tests/Ugsk.Daemon.Consent.IntegrationTests/"]
-COPY ["tests/UGSK.Daemon.Consent.Test/*.csproj", "./tests/UGSK.Daemon.Consent.Test/"]
-
-RUN dotnet restore --source https://artifacts.ugsk.ru/repository/nuget-group/ --source https://artifacts.ugsk.ru/repository/mobile-nuget-hosted/
-
-COPY ["src/Ugsk.Daemon.Consent.Domain/.", "./src/Ugsk.Daemon.Consent.Domain/"]
-COPY ["src/Ugsk.Daemon.Consent.Application/.", "./src/Ugsk.Daemon.Consent.Application/"]
-COPY ["src/Ugsk.Daemon.Consent.Infrastructure/.", "./src/Ugsk.Daemon.Consent.Infrastructure/"]
-COPY ["src/Ugsk.Daemon.Consent.EntryPoint/.", "./src/Ugsk.Daemon.Consent.EntryPoint/"]
-
-RUN dotnet publish -c Release -o out
-
-FROM base AS final
-COPY --from=build /app/Ugsk.Daemon.Consent/out ./
-ENTRYPOINT ["dotnet", "Ugsk.Daemon.Consent.EntryPoint.dll"]
+COPY --from=build /src/GameStreamer.Backend/out ./
+ENTRYPOINT ["dotnet", "GameStreamer.UI.dll"]
