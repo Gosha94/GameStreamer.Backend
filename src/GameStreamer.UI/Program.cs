@@ -4,6 +4,7 @@ using GameStreamer.UI.Configuration;
 using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
+
 var services = builder.Services;
 
 services.InstallServices(
@@ -40,6 +41,12 @@ WebApplication app = builder.Build();
 var logger = app.Logger;
 var lifetime = app.Lifetime;
 var env = app.Environment;
+
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
+    .AddEnvironmentVariables()
+    .Build();
 
 lifetime.ApplicationStarted
     .Register(() =>
