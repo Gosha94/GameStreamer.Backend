@@ -1,7 +1,7 @@
-﻿using GameStreamer.Hubs;
+﻿using MediatR;
+using GameStreamer.Hubs;
 using GameStreamer.Infrastructure;
 using GameStreamer.UI.Configuration;
-using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +24,8 @@ builder
 services.AddInfrastructureLayer(builder.Configuration);
 
 services.AddMediatR(GameStreamer.Application.AssemblyReference.Assembly);
+
+services.AddSignalR();
 
 services
     .AddSwaggerGen()

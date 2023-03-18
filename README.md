@@ -36,7 +36,8 @@ Commands for building and starting Docker container locally:
 
 4) Compose run:
 docker-compose -p "gamestreamer-backend-local" up -d
-### (!!!) Important information
+
+## (!!!) Important information
 **
 For local deploy you have to download and run project docker-local-environment which place is here:
 https://github.com/Gosha94/My-Dev-Environment.git
