@@ -1,0 +1,12 @@
+version: '3'
+services:
+    GameStreamer.Backend:
+      image: game-streamer-local:0.0.1
+      ports:
+      - "8080:80"
+      - "8090:443"
+      environment:
+        ASPNETCORE_ENVIRONMENT: Development
+      volumes:
+        - ${APPDATA}\Microsoft\UserSecrets\:/root/.microsoft/usersecrets
+        - ${APPDATA}\asp.net\https:/root/.aspnet/https/
