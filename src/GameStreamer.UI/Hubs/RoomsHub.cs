@@ -10,15 +10,15 @@ namespace GameStreamer.Hubs
     public class RoomsHub : Hub<IRoomsHub>
     {
 
-        private readonly IRoomManager _roomManager;
-        private readonly IPlayerManager _playerManager;
-        private readonly IPublishEndpoint _publishEndpoint;
+        //private readonly IRoomManager _roomManager;
+        //private readonly IPlayerManager _playerManager;
+        //private readonly IPublishEndpoint _publishEndpoint;
 
-        public RoomsHub(IRoomManager roomManager, IPlayerManager playerManager)
-        {
-            _roomManager = roomManager;
-            _playerManager = playerManager;
-        }
+        //public RoomsHub(IRoomManager roomManager, IPlayerManager playerManager)
+        //{
+        //    _roomManager = roomManager;
+        //    _playerManager = playerManager;
+        //}
 
         public Task GreetNewPlayer(string nickName)
         {
