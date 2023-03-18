@@ -20,3 +20,4 @@ src/bin/
 
 /tests/GameStreamer.Architecture.Tests/bin/Debug/net6.0
 /tests/GameStreamer.Architecture.Tests/obj
+*.pfx
