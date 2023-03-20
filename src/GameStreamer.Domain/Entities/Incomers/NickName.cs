@@ -1,12 +1,12 @@
 ﻿using GameStreamer.Domain.Shared;
 using GameStreamer.Domain.Primitives;
 
-namespace GameStreamer.Domain.ValueObjects;
+namespace GameStreamer.Domain.Entities.Incomers;
 
 public sealed class NickName : ValueObject
 {
 
-    public const int MaxLength = 25;
+    public const int MaxLength = 30;
 
     private NickName(string value)
     {

@@ -8,6 +8,7 @@ internal class IncomerConfiguration : IEntityTypeConfiguration<Incomer>
 {
     public void Configure(EntityTypeBuilder<Incomer> builder)
     {
-        
+        builder.HasKey(k => k.Id);
+        builder.Property(p => p.Id).HasConversion();
     }
 }

@@ -1,7 +1,7 @@
 ﻿using GameStreamer.Domain.Shared;
 using GameStreamer.Domain.Primitives;
 
-namespace GameStreamer.Domain.ValueObjects;
+namespace GameStreamer.Domain.Entities.Rooms;
 
 public sealed class RoomName : ValueObject
 {

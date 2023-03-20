@@ -1,5 +1,4 @@
 ﻿using GameStreamer.Domain.Primitives;
-using GameStreamer.Domain.ValueObjects;
 
 namespace GameStreamer.Domain.Entities;
 
