@@ -53,7 +53,7 @@ namespace GameStreamer.Domain.Entities
                 return Result.Failure<Invitation>(DomainErrors.CreatorInviting);
             }
 
-            var invitation = Invitation.Create(Guid.NewGuid(), incomer, this);
+            var invitation = Invitation.Create(incomer, this);
             
             _invitations.Add(invitation);
             

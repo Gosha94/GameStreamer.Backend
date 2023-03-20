@@ -21,9 +21,9 @@ namespace GameStreamer.Domain.Entities
                 CreatedOnUtc = DateTime.UtcNow;
         }
 
-        public static Invitation Create(Guid id, Incomer incomer, Room room)
+        public static Invitation Create(Incomer incomer, Room room)
         {
-            return new Invitation(id, incomer, room);
+            return new Invitation(Guid.NewGuid(), incomer, room);
         }
 
         internal void Expire()
