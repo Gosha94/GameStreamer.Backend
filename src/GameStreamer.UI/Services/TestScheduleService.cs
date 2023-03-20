@@ -1,4 +1,5 @@
-﻿using GameStreamer.Hubs;
+﻿using GameStreamer.Domain.Repositories;
+using GameStreamer.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using GameStreamer.Interfaces;
 using GameStreamer.DTOs;
