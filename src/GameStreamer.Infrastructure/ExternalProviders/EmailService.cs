@@ -1,7 +1,7 @@
 ﻿using GameStreamer.Domain.Entities;
 using GameStreamer.Domain.Repositories;
 
-namespace GameStreamer.Infrastructure;
+namespace GameStreamer.Infrastructure.ExternalProviders;
 
 internal sealed class EmailService : IEmailService
 {
