@@ -1,14 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using GameStreamer.Storage.GameStreamerDbase.Entities;
+﻿namespace GameStreamer.Storage.GameStreamerDbase.Mapping;
 
-namespace GameStreamer.Storage.GameStreamerDbase.Mapping
-{
-    public class RoomEntityMap : IEntityTypeConfiguration<RoomEntity>
-    {
-        public void Configure(EntityTypeBuilder<RoomEntity> builder)
-        {
-            builder.ToTable("game_rooms", "game_streamer");
+//public class RoomEntityMap : IEntityTypeConfiguration<RoomEntity>
+    //{
+    //    public void Configure(EntityTypeBuilder<RoomEntity> builder)
+    //    {
+    //        builder.ToTable("game_rooms", "game_streamer");
 
             //builder.HasKey(k => k.Id);
             //builder.Property(p => p.Id).ValueGeneratedOnAdd();
@@ -26,6 +22,5 @@ namespace GameStreamer.Storage.GameStreamerDbase.Mapping
 
             #endregion
 
-        }
-    }
-}
+    //    }
+    //}

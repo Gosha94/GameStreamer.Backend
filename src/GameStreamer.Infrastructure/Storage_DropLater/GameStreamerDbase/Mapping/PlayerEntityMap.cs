@@ -1,14 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using GameStreamer.Storage.GameStreamerDbase.Entities;
+﻿namespace GameStreamer.Storage.GameStreamerDbase.Mapping;
 
-namespace GameStreamer.Storage.GameStreamerDbase.Mapping
-{
-    public class PlayerEntityMap : IEntityTypeConfiguration<PlayerEntity>
-    {
-        public void Configure(EntityTypeBuilder<PlayerEntity> builder)
-        {
-            builder.ToTable("players", "game_streamer");
+    //public class PlayerEntityMap : IEntityTypeConfiguration<PlayerEntity>
+    //{
+    //    public void Configure(EntityTypeBuilder<PlayerEntity> builder)
+    //    {
+            //builder.ToTable("players", "game_streamer");
 
             //builder.HasKey(k => k.Id);
             //builder.Property(p => p.Id).ValueGeneratedOnAdd();
@@ -33,6 +29,5 @@ namespace GameStreamer.Storage.GameStreamerDbase.Mapping
 
             #endregion
 
-        }
-    }
-}
+    //    }
+    //}

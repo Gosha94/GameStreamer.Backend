@@ -4,14 +4,24 @@ namespace GameStreamer.Infrastructure;
 
 public sealed class GameStreamerDbContext : DbContext
 {
-
     /// <summary>
     /// Initializes a new instance of the <see cref="GameStreamerDbContext"/> class.
     /// </summary>
     /// <param name="options">The database context options.</param>
-    public GameStreamerDbContext(DbContextOptions options)
-        : base(options)
-    { }
+    /// <param name="modelBuilder"></param>
+    //public GameStreamerDbContext(DbContextOptions options)
+    //    : base(options)
+    //{ }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(GameStreamerDbContext).Assembly);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql();
+    }
 
     /// <summary>
     /// Saves all of the pending changes in the unit of work.
