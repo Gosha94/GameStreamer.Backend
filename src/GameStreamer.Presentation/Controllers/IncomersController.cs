@@ -7,6 +7,7 @@ using GameStreamer.Presentation.Abstractions;
 
 namespace GameStreamer.Presentation.Controllers;
 
+[RequireHttps]
 [Route("api/incomers")]
 public sealed class IncomersController : ApiController
 {

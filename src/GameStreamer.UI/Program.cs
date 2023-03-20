@@ -83,13 +83,16 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
+    // In Production we have to use proxy server instead Asp.net Core redirection
+    //app.UseExceptionHandler("/Error");
+    //app.UseHsts();
 }
 
 app.MapHub<RoomsHub>("/lobbies");
 app.MapHub<GameHub>("/game");
 
 app.UseHttpsRedirection();
+app.UseRouting();
+
 app.MapControllers();
 app.Run();
