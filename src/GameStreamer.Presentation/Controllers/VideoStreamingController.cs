@@ -19,7 +19,7 @@ namespace GameStreamer.Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<FileStreamResult> Get(string name)
+        public async Task<FileStreamResult> Get()
         {
             var stream = await _streamingService.GetVideoStreamAsync();
             return new FileStreamResult(stream, "video/mp4");
