@@ -1,4 +1,5 @@
-﻿using GameStreamer.Domain.Entities;
+﻿using GameStreamer.Domain.Entities.Incomers;
+using GameStreamer.Domain.Entities.Rooms;
 using GameStreamer.Domain.Repositories;
 
 namespace GameStreamer.Infrastructure.ExternalProviders;

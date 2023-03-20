@@ -1,6 +1,6 @@
 ﻿using GameStreamer.Domain.Primitives;
 
-namespace GameStreamer.Domain.Entities;
+namespace GameStreamer.Domain.Entities.Incomers;
 
 public sealed class Incomer : AggregateRoot
 {

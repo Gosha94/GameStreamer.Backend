@@ -1,8 +1,9 @@
 ﻿using GameStreamer.Domain.Errors;
 using GameStreamer.Domain.Shared;
 using GameStreamer.Domain.Primitives;
+using GameStreamer.Domain.Entities.Incomers;
 
-namespace GameStreamer.Domain.Entities
+namespace GameStreamer.Domain.Entities.Rooms
 {
     public sealed class Room : AggregateRoot
     {
@@ -14,8 +15,8 @@ namespace GameStreamer.Domain.Entities
         public IReadOnlyCollection<Invitation> Invitations => _invitations;
 
         public Incomer Creator { get; }
-        
-        public string Name { get; }
+
+        public RoomName RoomName { get; }
 
         public int MaxRoomiesNumber { get; }
 
@@ -26,11 +27,11 @@ namespace GameStreamer.Domain.Entities
         private Room(
             Guid id,
             Incomer creator,
-            string name,
+            string roomName,
             int maxRoomiesNumber
         ) : base(id)
         {
-            Name = name;
+            RoomName = RoomName.Create(roomName).Value;
             Creator = creator;
             CreatedOnUtc = DateTime.UtcNow;
             MaxRoomiesNumber = maxRoomiesNumber;
@@ -41,7 +42,7 @@ namespace GameStreamer.Domain.Entities
             var maxNumberOfRoomies = 2;
 
             var room = new Room(Guid.NewGuid(), creator, name, maxNumberOfRoomies);
-            
+
             return room;
         }
 
@@ -54,9 +55,9 @@ namespace GameStreamer.Domain.Entities
             }
 
             var invitation = Invitation.Create(incomer, this);
-            
+
             _invitations.Add(invitation);
-            
+
             return invitation;
         }
 

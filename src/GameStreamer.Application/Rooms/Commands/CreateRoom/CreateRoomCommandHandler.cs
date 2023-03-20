@@ -1,6 +1,6 @@
-﻿using GameStreamer.Domain.Entities;
-using MediatR;
+﻿using MediatR;
 using GameStreamer.Domain.Repositories;
+using GameStreamer.Domain.Entities.Rooms;
 
 namespace GameStreamer.Application.Rooms.Commands.CreateRoom;
 

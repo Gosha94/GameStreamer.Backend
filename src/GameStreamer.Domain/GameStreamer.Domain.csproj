@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="docs\" />
-    <Folder Include="Entities\Invitations\" />
-    <Folder Include="Entities\Roomies\" />
   </ItemGroup>
 
 </Project>
