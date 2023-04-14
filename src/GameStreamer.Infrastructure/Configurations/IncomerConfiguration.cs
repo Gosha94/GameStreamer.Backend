@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using GameStreamer.Domain.Entities.Incomers;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using GameStreamer.Domain.Entities;
 
 namespace GameStreamer.Infrastructure.Configurations;
 
@@ -21,9 +21,9 @@ internal class IncomerConfiguration : IEntityTypeConfiguration<Incomer>
                 .HasMaxLength(30)
                 .HasColumnName("nick_name")
                 .IsRequired();
+            
+            nickNameBuilder.HasIndex(p => p.Value).IsUnique();
         });
 
-        builder.HasIndex(p => p.NickName)
-            .IsUnique();
     }
 }

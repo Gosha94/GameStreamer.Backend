@@ -4,7 +4,6 @@ namespace GameStreamer.Interfaces
 {
     public interface IRoomsHub
     {
-
         #region Channels For Only Data Streaming
 
         Task NewPlayerJoined(PlayerDataResponseDTO playerResponseDto);

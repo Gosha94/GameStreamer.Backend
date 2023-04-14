@@ -1,9 +1,9 @@
 ﻿using GameStreamer.Domain.Errors;
 using GameStreamer.Domain.Shared;
 using GameStreamer.Domain.Primitives;
-using GameStreamer.Domain.Entities.Incomers;
+using GameStreamer.Domain.ValueObjects;
 
-namespace GameStreamer.Domain.Entities.Rooms
+namespace GameStreamer.Domain.Entities
 {
     public sealed class Room : AggregateRoot
     {

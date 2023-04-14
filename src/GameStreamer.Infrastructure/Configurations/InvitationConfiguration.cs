@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using GameStreamer.Domain.Entities.Rooms;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using GameStreamer.Domain.Entities;
 
 namespace GameStreamer.Infrastructure.Configurations;
 

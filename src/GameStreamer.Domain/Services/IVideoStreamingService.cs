@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.Domain.Repositories
+﻿namespace GameStreamer.Domain.Services
 {
     public interface IVideoStreamingService
     {

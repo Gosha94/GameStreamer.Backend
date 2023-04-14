@@ -11,9 +11,4 @@ public static class DomainErrors
     public static readonly Error InviteToFullRoom = new Error(
         "GameStreamer.InviteToFullRoom",
         "Can't add Incomer to the Room 'cause it's full already.");
-
-    //public static readonly Error AlreadyPassed = new Error(
-    //    "GameStreamer.AlreadyPassed",
-    //    "Can't send invitation for game in the past.");
-
 }

@@ -15,8 +15,4 @@
     <ProjectReference Include="..\GameStreamer.Application\GameStreamer.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Hubs\" />
-  </ItemGroup>
-
 </Project>

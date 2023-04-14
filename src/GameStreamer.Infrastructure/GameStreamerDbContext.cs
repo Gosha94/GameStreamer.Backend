@@ -9,9 +9,9 @@ public sealed class GameStreamerDbContext : DbContext
     /// </summary>
     /// <param name="options">The database context options.</param>
     /// <param name="modelBuilder"></param>
-    //public GameStreamerDbContext(DbContextOptions options)
-    //    : base(options)
-    //{ }
+    public GameStreamerDbContext(DbContextOptions options)
+        : base(options)
+    { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

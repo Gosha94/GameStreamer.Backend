@@ -1,7 +1,8 @@
 ﻿using GameStreamer.Domain.Shared;
 using GameStreamer.Domain.Repositories;
 using GameStreamer.Application.Abstractions.Messaging;
-using GameStreamer.Domain.Entities.Incomers;
+using GameStreamer.Domain.Entities;
+using GameStreamer.Domain.Values;
 
 namespace GameStreamer.Application.Incomers.Commands.CreateIncomer;
 

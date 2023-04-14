@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿using MassTransit;
 
 namespace GameStreamer.UI.Configuration
 {
@@ -6,51 +6,46 @@ namespace GameStreamer.UI.Configuration
     {
         public void Install(IServiceCollection services, IConfiguration configuration)
         {
-            
 
-            services.Configure<ConsoleLifetimeOptions>(options => options.SuppressStatusMessages = true);
+            services.AddSignalR();
 
-            //                services.AddSignalR();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:5500", "http://127.0.0.1:5500")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
+                    });
+            });
 
-            //                services.AddCors(options =>
-            //                {
-            //                    options.AddDefaultPolicy(
-            //                        builder =>
-            //                        {
-            //                            builder.WithOrigins("http://localhost:5500", "http://127.0.0.1:5500")
-            //                                .AllowAnyHeader()
-            //                                .AllowAnyMethod()
-            //                                .AllowCredentials();
-            //                        });
-            //                });
+            services.AddSingleton<IRoomManager, RoomManager>();
+            services.AddTransient<IGameStreamRepository, GameStreamRepository>();
+            services.AddSingleton<IPlayerManager, PlayerManager>();
+            services.AddSingleton<IHashService, HashService>();
 
-            //                services.AddHostedService<TestScheduleService>();
+            services.AddMassTransit(x =>
+            {
 
-            //                services.AddSingleton<IRoomManager, RoomManager>();
-            //                services.AddTransient<IGameStreamRepository, GameStreamRepository>();
-            //                services.AddSingleton<IPlayerManager, PlayerManager>();
-            //                services.AddSingleton<IHashService, HashService>();
+                x.AddConsumer<TurnAcceptedConsumer>(typeof(TurnAcceptedConsumerDefinition));
+                x.AddConsumer<TurnDeniedConsumer>(typeof(TurnNotAcceptedConsumerDefinition));
 
-            //                services.AddMassTransit(x =>
-            //                {
+                x.SetKebabCaseEndpointNameFormatter();
 
-            //                    x.AddConsumer<TurnAcceptedConsumer>(typeof(TurnAcceptedConsumerDefinition));
-            //                    x.AddConsumer<TurnDeniedConsumer>(typeof(TurnNotAcceptedConsumerDefinition));
+                x.UsingRabbitMq((rmqContext, cfg) =>
+                {
+                    cfg.Host("localhost", "xo_game", h =>
+                    {
+                        h.Username("xo_admin");
+                        h.Password("xo_admin");
+                    });
 
-            //                    x.SetKebabCaseEndpointNameFormatter();
+                    cfg.ConfigureEndpoints(rmqContext);
+                });
 
-            //                    x.UsingRabbitMq((rmqContext, cfg) =>
-            //                    {
-            //                        cfg.Host("localhost", "xo_game", h =>
-            //                        {
-            //                            h.Username("xo_admin");
-            //                            h.Password("xo_admin");
-            //                        });
-
-            //                        cfg.ConfigureEndpoints(rmqContext);
-            //                    });
-
-            //                });
+            });
         }
     }
 }

@@ -15,8 +15,4 @@
     <ProjectReference Include="..\GameStreamer.Domain\GameStreamer.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Abstractions\Data\" />
-  </ItemGroup>
-
 </Project>

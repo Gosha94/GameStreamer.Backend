@@ -1,6 +1,7 @@
 ﻿using GameStreamer.Application.Abstractions.Messaging;
-using GameStreamer.Domain.Entities.Rooms;
+using GameStreamer.Domain.Entities;
 using GameStreamer.Domain.Repositories;
+using GameStreamer.Domain.Services;
 using GameStreamer.Domain.Shared;
 
 namespace GameStreamer.Application.Invitations.Commands.SendInvitation;

@@ -1,9 +1,9 @@
-﻿using GameStreamer.Application.Incomers.Commands.CreateIncomer;
-using GameStreamer.Application.Incomers.Queries.GetIncomerById;
-using GameStreamer.Domain.Shared;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using GameStreamer.Domain.Shared;
 using GameStreamer.Presentation.Abstractions;
+using GameStreamer.Application.Incomers.Commands.CreateIncomer;
+using GameStreamer.Application.Incomers.Queries.GetIncomerById;
 
 namespace GameStreamer.Presentation.Controllers;
 
@@ -33,7 +33,7 @@ public sealed class IncomersController : ApiController
     {
         var query = new GetIncomerByIdQuery(id);
 
-        Result<IncomerResponse> response = (Result<IncomerResponse>)await Sender.Send(query, cancellationToken);
+        Result<IncomerResponse> response = await Sender.Send(query, cancellationToken);
 
         return response.IsSuccess ? Ok(response.Value) : NotFound(response.Error);
     }

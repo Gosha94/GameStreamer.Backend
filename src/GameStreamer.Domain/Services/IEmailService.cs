@@ -1,7 +1,7 @@
-﻿using GameStreamer.Domain.Entities.Incomers;
+﻿using GameStreamer.Domain.Entities;
 using GameStreamer.Domain.Entities.Rooms;
 
-namespace GameStreamer.Domain.Repositories;
+namespace GameStreamer.Domain.Services;
 
 public interface IEmailService
 {

@@ -1,8 +1,7 @@
 ﻿using GameStreamer.Domain.Enums;
 using GameStreamer.Domain.Primitives;
-using GameStreamer.Domain.Entities.Incomers;
 
-namespace GameStreamer.Domain.Entities.Rooms
+namespace GameStreamer.Domain.Entities
 {
 
     public sealed class Invitation : Entity
@@ -10,11 +9,11 @@ namespace GameStreamer.Domain.Entities.Rooms
         public Guid IncomerId { get; }
 
         public Guid RoomId { get; }
-        
+
         public InvitationStatus Status { get; private set; }
-        
+
         public DateTime CreatedOnUtc { get; }
-        
+
         public DateTime? ModifiedOnUtc { get; private set; }
 
         private Invitation(Guid id, Incomer incomer, Room room) : base(id)

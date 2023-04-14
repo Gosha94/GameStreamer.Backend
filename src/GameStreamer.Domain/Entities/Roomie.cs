@@ -1,6 +1,6 @@
 ﻿using GameStreamer.Domain.Primitives;
 
-namespace GameStreamer.Domain.Entities.Rooms;
+namespace GameStreamer.Domain.Entities;
 
 public sealed class Roomie : Entity
 {

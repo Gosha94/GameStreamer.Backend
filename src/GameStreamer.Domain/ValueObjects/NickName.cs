@@ -1,7 +1,7 @@
 ﻿using GameStreamer.Domain.Shared;
 using GameStreamer.Domain.Primitives;
 
-namespace GameStreamer.Domain.Entities.Incomers;
+namespace GameStreamer.Domain.ValueObjects;
 
 public sealed class NickName : ValueObject
 {

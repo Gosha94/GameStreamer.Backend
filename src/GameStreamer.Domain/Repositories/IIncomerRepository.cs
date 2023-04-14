@@ -1,4 +1,4 @@
-﻿using GameStreamer.Domain.Entities.Incomers;
+﻿using GameStreamer.Domain.Entities;
 
 namespace GameStreamer.Domain.Repositories;
 
