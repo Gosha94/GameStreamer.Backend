@@ -24,3 +24,4 @@ src/bin/
 /tests/GameStreamer.Application.Tests/obj
 /tests/GameStreamer.Domain.Tests/obj
 /tests/GameStreamer.Application.Tests/bin/Debug/net6.0
+/tests/GameStreamer.Domain.Tests/bin/Debug/net6.0
