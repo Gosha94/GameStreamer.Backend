@@ -1,5 +1,4 @@
 ﻿using GameStreamer.Domain.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace GameStreamer.Infrastructure;
 

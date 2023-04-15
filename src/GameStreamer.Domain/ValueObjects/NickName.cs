@@ -1,5 +1,6 @@
 ﻿using GameStreamer.Domain.Shared;
 using GameStreamer.Domain.Primitives;
+using GameStreamer.Domain.Errors;
 
 namespace GameStreamer.Domain.ValueObjects;
 
@@ -19,16 +20,12 @@ public sealed class NickName : ValueObject
     {
         if (string.IsNullOrWhiteSpace(nickName))
         {
-            return Result.Failure<NickName>(new Error(
-                "NickName.Empty",
-                "NickName is empty."));
+            return Result.Failure<NickName>(DomainErrors.EmptyNickName);
         }
 
         if (nickName.Length > MaxLength)
         {
-            return Result.Failure<NickName>(new Error(
-                "NickName.TooLong",
-                "NickName is too long."));
+            return Result.Failure<NickName>(DomainErrors.TooLongNickName);
         }
 
         return new NickName(nickName);
