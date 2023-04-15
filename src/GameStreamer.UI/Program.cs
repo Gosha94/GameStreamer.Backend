@@ -25,12 +25,6 @@ services.AddInfrastructureLayer(builder.Configuration);
 
 services.AddMediatR(GameStreamer.Application.AssemblyReference.Assembly);
 
-services.AddSignalR();
-
-services
-    .AddSwaggerGen()
-    .AddEndpointsApiExplorer();
-
 services
     .AddControllers()
     .AddApplicationPart(GameStreamer.Presentation.AssemblyReference.Assembly);
@@ -49,8 +43,6 @@ services.AddHsts(options =>
     options.Preload = true;
     options.IncludeSubDomains = true;
     options.MaxAge = TimeSpan.FromDays(60);
-    //options.ExcludedHosts.Add("example.com");
-    //options.ExcludedHosts.Add("www.example.com");
 });
 
 WebApplication app = builder.Build();

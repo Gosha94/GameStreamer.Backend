@@ -1,9 +1,6 @@
 ﻿using GameStreamer.DTOs;
-using MassTransit;
-using Microsoft.AspNetCore.SignalR;
-using GameStreamer.Services;
 using GameStreamer.Interfaces;
-using GameStreamer.DTOs.DataAccess;
+using Microsoft.AspNetCore.SignalR;
 
 namespace GameStreamer.Hubs
 {

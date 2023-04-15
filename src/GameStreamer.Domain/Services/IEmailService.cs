@@ -1,5 +1,4 @@
 ﻿using GameStreamer.Domain.Entities;
-using GameStreamer.Domain.Entities.Rooms;
 
 namespace GameStreamer.Domain.Services;
 
