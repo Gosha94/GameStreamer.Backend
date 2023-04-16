@@ -24,7 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <Folder Include="Storage\Migrations\" />
+    <Folder Include="MessageBroker\" />
   </ItemGroup>
 
 </Project>

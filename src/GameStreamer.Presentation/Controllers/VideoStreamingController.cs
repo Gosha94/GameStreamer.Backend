@@ -1,4 +1,4 @@
-﻿using GameStreamer.Domain.Services;
+﻿using GameStreamer.Domain.ExternalProviders;
 using GameStreamer.Presentation.Abstractions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

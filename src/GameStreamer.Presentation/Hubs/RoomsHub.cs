@@ -1,5 +1,5 @@
-﻿using GameStreamer.DTOs;
-using GameStreamer.Interfaces;
+﻿using GameStreamer.Domain.InternalProviders;
+using GameStreamer.DTOs;
 using Microsoft.AspNetCore.SignalR;
 
 namespace GameStreamer.Hubs

@@ -1,4 +1,4 @@
-﻿using GameStreamer.Domain.Services;
+﻿using GameStreamer.Domain.ExternalProviders;
 
 namespace GameStreamer.Infrastructure.ExternalProviders;
 

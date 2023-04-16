@@ -23,4 +23,17 @@ public static class DomainErrors
         "NickName is too long.");
 
     #endregion
+
+    #region RoomName
+
+    public static readonly Error EmptyRoomName = new Error(
+        "RoomName.Empty",
+        "RoomName is empty.");
+
+    public static readonly Error TooLongRoomName = new Error(
+        "RoomName.TooLong",
+        "RoomName is too long.");
+
+    #endregion
+
 }

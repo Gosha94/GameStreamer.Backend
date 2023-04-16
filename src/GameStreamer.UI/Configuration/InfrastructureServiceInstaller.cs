@@ -1,9 +1,10 @@
-﻿using GameStreamer.Consumers;
-using GameStreamer.Consumers.Definitions;
+﻿using MassTransit;
+using GameStreamer.Consumers;
 using GameStreamer.Domain.Repositories;
-using GameStreamer.Infrastructure.Repositories;
-using GameStreamer.Services;
-using MassTransit;
+using GameStreamer.Domain.InternalProviders;
+using GameStreamer.Infrastructure.InternalProviders;
+using GameStreamer.Infrastructure.Storage.Repositories;
+using GameStreamer.Infrastructure.MessageBroker.Consumers.Definitions;
 
 namespace GameStreamer.UI.Configuration
 {
@@ -19,8 +20,8 @@ namespace GameStreamer.UI.Configuration
             services.AddMassTransit(x =>
             {
 
-                x.AddConsumer<TurnAcceptedConsumer>(typeof(TurnAcceptedConsumerDefinition));
-                x.AddConsumer<TurnDeniedConsumer>(typeof(TurnNotAcceptedConsumerDefinition));
+                x.AddConsumer<TurnAcceptedEventConsumer>(typeof(TurnAcceptedConsumerDefinition));
+                x.AddConsumer<TurnDeniedEventConsumer>(typeof(TurnNotAcceptedConsumerDefinition));
 
                 x.SetKebabCaseEndpointNameFormatter();
 

@@ -1,5 +1,6 @@
 ﻿using GameStreamer.Domain.Shared;
 using GameStreamer.Domain.Primitives;
+using GameStreamer.Domain.Errors;
 
 namespace GameStreamer.Domain.ValueObjects;
 
@@ -18,16 +19,12 @@ public sealed class RoomName : ValueObject
     {
         if (string.IsNullOrWhiteSpace(roomName))
         {
-            return Result.Failure<RoomName>(new Error(
-                "RoomName.Empty",
-                "RoomName is empty."));
+            return Result.Failure<RoomName>(DomainErrors.EmptyRoomName);
         }
 
         if (roomName.Length > MaxLength)
         {
-            return Result.Failure<RoomName>(new Error(
-                "RoomName.TooLong",
-                "RoomName is too long."));
+            return Result.Failure<RoomName>(DomainErrors.TooLongRoomName);
         }
 
         return new RoomName(roomName);
