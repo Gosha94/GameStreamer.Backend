@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.Infrastructure.Storage.Storage_DropLater.GameStreamerDbase.Entities
+﻿namespace GameStreamer.Infrastructure.Storage.Entities
 {
 
     /// <summary>

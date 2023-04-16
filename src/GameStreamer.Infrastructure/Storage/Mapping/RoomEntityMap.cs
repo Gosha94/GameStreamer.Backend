@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.Infrastructure.Storage.Storage_DropLater.GameStreamerDbase.Mapping;
+﻿namespace GameStreamer.Infrastructure.Storage.Mapping;
 
 //public class RoomEntityMap : IEntityTypeConfiguration<RoomEntity>
 //{
