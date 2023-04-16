@@ -1,4 +1,4 @@
-﻿namespace GameStreamer.DTOs.MessageBus.Consume
+﻿namespace GameStreamer.Application.Turns.TurnDenied
 {
     public class TurnDeniedDto
     {

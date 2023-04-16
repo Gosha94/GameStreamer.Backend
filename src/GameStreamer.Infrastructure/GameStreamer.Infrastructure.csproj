@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GameStreamer.Application\GameStreamer.Application.csproj" />
     <ProjectReference Include="..\GameStreamer.Domain\GameStreamer.Domain.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 using Newtonsoft.Json;
-using GameStreamer.DTOs.MessageBus.Consume;
+using GameStreamer.Application.Turns.TurnAccepted;
 
 namespace GameStreamer.Consumers;
 
