@@ -1,20 +1,21 @@
 ﻿using GameStreamer.DTOs;
 using GameStreamer.DTOs.DataAccess;
+using GameStreamer.Domain.Repositories;
 using GameStreamer.Domain.InternalProviders;
 
 namespace GameStreamer.Infrastructure.InternalProviders;
 
 public class PlayerManager : IPlayerManager
 {
-    //private readonly IHashService _hashService;
-    //private readonly IGameStreamRepository _gameRepo;
-    //private readonly Random _random = new ();
+    private readonly IHashService _hashService;
+    private readonly IGameStreamRepository _gameRepo;
+    private readonly Random _random = new();
 
-    //public PlayerManager(IGameStreamRepository gameRepo, IHashService hashService)
-    //{
-    //    _gameRepo = gameRepo;
-    //    _hashService = hashService;
-    //}
+    public PlayerManager(IGameStreamRepository gameRepo, IHashService hashService)
+    {
+        _gameRepo = gameRepo;
+        _hashService = hashService;
+    }
 
     public PlayerDataResponseDTO? AddNewPlayer(PlayerDto addedPlayerDto)
     {
@@ -22,25 +23,25 @@ public class PlayerManager : IPlayerManager
 
         if (addedPlayerDto.IsRandomGameMode)
         {
-            //var halfEmptyRoom = _gameRepo.GetFirstIncompleteRoom();
-            RoomDto halfEmptyRoom = null;
+            
+            // Search First Not Full Room In Repo
+            var halfEmptyRoom = new RoomDto();
 
             if (halfEmptyRoom != null)
             {
-                halfEmptyRoom.RoomPlayers.Append(addedPlayerDto);
-
-                //_gameRepo.UpdateRoom(halfEmptyRoom);
+                // Append Player To Room
+                // Save Room In Repo
             }
             else
             {
-                //var newRoomHubId = $"TestRoom_{_random.Next(1000, 1999)}";
-                //var newRoom = new RoomDto
-                //{
-                //    HubGroupId = newRoomHubId,
-                //    RoomGuid = _hashService.CalculateHashCodeFrom(newRoomHubId)
-                //};
+                var newRoomHubId = $"TestRoom_{_random.Next(1000, 1999)}";
+                var newRoom = new RoomDto
+                {
+                    HubGroupId = newRoomHubId,
+                    RoomGuid = _hashService.CalculateHashCodeFrom(newRoomHubId)
+                };
 
-                //_gameRepo.AddRoom(newRoom);
+                // Add Room to Repo
             }
             responseDto = new PlayerDataResponseDTO { };
         }
@@ -64,20 +65,16 @@ public class PlayerManager : IPlayerManager
             return null;
         }
 
-        //var playerPreviousGuid = _hashService.CalculateHashCodeFrom(prevNickName);
-        //var playerNewGuid = _hashService.CalculateHashCodeFrom(prevNickName);
+        // Calculate Player Hash Guid
 
-        //var existedNewPlayer = _gameRepo.GetPlayerBy(playerPreviousGuid);
+        // Check Player In Repo
+        var existedNewPlayer = new PlayerDataResponseDTO();
 
-        //if (existedNewPlayer != null)
-        if (true)
+        if (existedNewPlayer != null)
         {
-            //existedNewPlayer.NickName = newNickName;
-            //existedNewPlayer.PlayerDataHashGuid = playerNewGuid;
+            // Update Player In Repo
 
-            //_gameRepo.UpdatePlayer(existedNewPlayer);
-
-            //Console.WriteLine($"Поменяли никнейм новому игроку, старый: {prevNickName}, новый: {newNickName}, успешно нашли его под старым uuid: {playerPreviousGuid}, новый uuid: {playerNewGuid}");
+            Console.WriteLine($"Поменяли никнейм новому игроку, старый: {prevNickName}, новый: {newNickName}, успешно нашли его под старым uuid: {Guid.Empty}, новый uuid: {Guid.Empty}");
         }
         else
         {

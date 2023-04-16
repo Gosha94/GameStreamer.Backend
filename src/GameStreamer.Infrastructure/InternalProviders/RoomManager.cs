@@ -39,6 +39,7 @@ public class RoomManager : IRoomManager
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Сорян, RoomsManager пока не умеет удалять комнаты :(");
         Console.ForegroundColor = ConsoleColor.Gray;
+        
         return new GameRoomResponseDTO();
     }
 
@@ -48,7 +49,8 @@ public class RoomManager : IRoomManager
         Console.WriteLine("Сорян, RoomsManager пока не умеет добавлять комнаты :(");
         Console.ForegroundColor = ConsoleColor.Gray;
 
-        throw new NotImplementedException();
+        return new GameRoomResponseDTO();
+
     }
 
 }
