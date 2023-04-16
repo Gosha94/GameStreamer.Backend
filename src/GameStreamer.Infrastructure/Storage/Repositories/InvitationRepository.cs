@@ -3,7 +3,7 @@ using GameStreamer.Domain.Repositories;
 
 namespace GameStreamer.Infrastructure.Storage.Repositories;
 
-internal sealed class InvitationRepository : IInvitationRepository
+public sealed class InvitationRepository : IInvitationRepository
 
 {
     public void Add(Invitation invitation)

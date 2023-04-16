@@ -4,7 +4,7 @@ using GameStreamer.Infrastructure.Storage;
 
 namespace GameStreamer.Infrastructure.Storage.Repositories;
 
-internal sealed class IncomerRepository : IIncomerRepository
+public sealed class IncomerRepository : IIncomerRepository
 {
 
     private readonly GameStreamerDbContext _dbContext;

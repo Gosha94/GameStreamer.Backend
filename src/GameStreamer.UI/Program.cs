@@ -1,29 +1,18 @@
 ﻿using MediatR;
 using GameStreamer.Hubs;
-using GameStreamer.Infrastructure;
 using GameStreamer.UI.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
 
+builder.SetVariablesFromJsonAndEnvironment();
+
+services.AddMediatR(GameStreamer.Application.AssemblyReference.Assembly);
+
 services.InstallServices(
     builder.Configuration,
     typeof(IServiceCollection).Assembly);
-
-builder
-    .Services
-    .Scan(
-        selector => selector
-            .FromAssemblies(
-                GameStreamer.Infrastructure.AssemblyReference.Assembly)
-            .AddClasses(false)
-            .AsImplementedInterfaces()
-            .WithScopedLifetime());
-
-services.AddInfrastructureLayer(builder.Configuration);
-
-services.AddMediatR(GameStreamer.Application.AssemblyReference.Assembly);
 
 services.AddSignalR();
 
@@ -53,11 +42,11 @@ var logger = app.Logger;
 var lifetime = app.Lifetime;
 var env = app.Environment;
 
-new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")
-    .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
-    .AddEnvironmentVariables()
-    .Build();
+//new ConfigurationBuilder()
+//    .AddJsonFile("appsettings.json")
+//    .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
+//    .AddEnvironmentVariables()
+//    .Build();
 
 lifetime.ApplicationStarted
     .Register(() =>

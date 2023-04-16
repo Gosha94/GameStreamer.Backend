@@ -1,8 +1,7 @@
 ﻿using MassTransit;
 using Newtonsoft.Json;
-using GameStreamer.Application.Turns.TurnDenied;
 
-namespace GameStreamer.Consumers;
+namespace GameStreamer.Application.Turns.TurnDenied;
 
 public class TurnDeniedEventConsumer : IConsumer<TurnDeniedDto>
 {

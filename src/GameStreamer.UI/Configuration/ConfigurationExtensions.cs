@@ -5,8 +5,10 @@ namespace GameStreamer.UI.Configuration;
 
 public static class ConfigurationExtensions
 {
-    public static IConfiguration SetFromDockerComposeEnvironmentVariables(this ConfigurationManager configManager, IWebHostEnvironment env, WebApplicationBuilder builder)
+    public static IConfiguration SetVariablesFromJsonAndEnvironment(this WebApplicationBuilder builder)
     {
+        var env = builder.Environment;
+        var configManager = builder.Configuration;
 
         var appConfiguration = configManager
             .SetBasePath(env.ContentRootPath)

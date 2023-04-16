@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using GameStreamer.Application.Turns.TurnAccepted;
 
 namespace GameStreamer.Infrastructure.MessageBroker.Consumers.Definitions
 {

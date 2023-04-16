@@ -3,7 +3,7 @@ using GameStreamer.Domain.Repositories;
 
 namespace GameStreamer.Infrastructure.Storage.Repositories;
 
-internal sealed class RoomieRepository : IRoomieRepository
+public sealed class RoomieRepository : IRoomieRepository
 {
     public void Add(Roomie roomie)
     {

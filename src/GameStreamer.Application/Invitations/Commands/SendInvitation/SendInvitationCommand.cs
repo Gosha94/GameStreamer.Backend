@@ -3,4 +3,9 @@ using GameStreamer.Domain.Shared;
 
 namespace GameStreamer.Application.Invitations.Commands.SendInvitation;
 
-public sealed record SendInvitationCommand(Guid IncomerId, Guid RoomId) : ICommand<Result>;
+public sealed record SendInvitationCommand() : ICommand<Result>
+{
+    public Guid IncomerId { get; init; }
+
+    public Guid RoomId { get; init; }
+}

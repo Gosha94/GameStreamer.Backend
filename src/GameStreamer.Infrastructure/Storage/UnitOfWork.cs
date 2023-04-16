@@ -2,7 +2,7 @@
 
 namespace GameStreamer.Infrastructure.Storage;
 
-internal sealed class UnitOfWork : IUnitOfWork
+public sealed class UnitOfWork : IUnitOfWork
 {
 
     private readonly GameStreamerDbContext _dbContext;

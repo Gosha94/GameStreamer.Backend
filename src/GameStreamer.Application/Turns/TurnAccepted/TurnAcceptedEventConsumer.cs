@@ -1,8 +1,7 @@
 ﻿using MassTransit;
 using Newtonsoft.Json;
-using GameStreamer.Application.Turns.TurnAccepted;
 
-namespace GameStreamer.Consumers;
+namespace GameStreamer.Application.Turns.TurnAccepted;
 
 public class TurnAcceptedEventConsumer : IConsumer<TurnAcceptedDto>
 {

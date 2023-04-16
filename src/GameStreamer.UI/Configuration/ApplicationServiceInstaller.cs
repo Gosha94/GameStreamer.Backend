@@ -1,4 +1,6 @@
-﻿namespace GameStreamer.UI.Configuration
+﻿using Microsoft.AspNetCore.Hosting;
+
+namespace GameStreamer.UI.Configuration
 {
     public class ApplicationServiceInstaller : IServiceInstaller
     {
