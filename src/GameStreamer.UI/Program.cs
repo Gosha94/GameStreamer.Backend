@@ -25,6 +25,8 @@ services.AddInfrastructureLayer(builder.Configuration);
 
 services.AddMediatR(GameStreamer.Application.AssemblyReference.Assembly);
 
+services.AddSignalR();
+
 services
     .AddControllers()
     .AddApplicationPart(GameStreamer.Presentation.AssemblyReference.Assembly);

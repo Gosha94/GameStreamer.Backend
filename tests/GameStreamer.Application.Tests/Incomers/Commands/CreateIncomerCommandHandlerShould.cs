@@ -13,15 +13,6 @@ namespace GameStreamer.Application.Tests.Incomers.Commands
     public class CreateIncomerCommandHandlerShould
     {
 
-        //private readonly Mock<IUnitOfWork> _unitOfWorkMock;
-        //private readonly Mock<IIncomerRepository> _incomerRepositoryMock;
-
-        //public CreateIncomerCommandHandlerShould()
-        //{
-        //    _unitOfWorkMock = new();
-        //    _incomerRepositoryMock = new();
-        //}
-
         [Theory]
         [AutoMoqData]
         public async Task Handler_Should_ReturnsFailureResult_WhenIncomersNickNameEmpty(
@@ -43,5 +34,28 @@ namespace GameStreamer.Application.Tests.Incomers.Commands
             result.IsFailure.Should().BeTrue();
             result.Error.Should().Be(DomainErrors.EmptyNickName);
         }
+
+        [Theory]
+        [AutoMoqData]
+        public async Task Handler_Should_ReturnsFailureResult_WhenIncomersNickNameTooLong(
+            [Frozen] Mock<IUnitOfWork> unitOfWorkMock,
+            [Frozen] Mock<IIncomerRepository> incomerRepositoryMock
+            )
+        {
+            // Arrange
+            var command = new CreateIncomerCommand("ThisIsMegaLongNickNameEverForTestOnly");
+
+            var handlerUnderTest = new CreateIncomerCommandHandler(
+                incomerRepositoryMock.Object,
+                unitOfWorkMock.Object);
+
+            // Act
+            Result result = await handlerUnderTest.Handle(command, default);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+            result.Error.Should().Be(DomainErrors.TooLongNickName);
+        }
+
     }
 }

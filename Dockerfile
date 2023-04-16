@@ -8,8 +8,6 @@ COPY ["src/GameStreamer.Infrastructure/*.csproj", "./src/GameStreamer.Infrastruc
 COPY ["src/GameStreamer.Presentation/*.csproj", "./src/GameStreamer.Presentation/"]
 COPY ["src/GameStreamer.UI/*.csproj", "./src/GameStreamer.UI/"]
 
-COPY ["tests/GameStreamer.Architecture.Tests/*.csproj", "./tests/GameStreamer.Architecture.Tests/"]
-
 RUN dotnet restore -s https://api.nuget.org/v3/index.json --packages packages --ignore-failed-sources
 
 COPY ["src/GameStreamer.Domain/.", "./src/GameStreamer.Domain/"]

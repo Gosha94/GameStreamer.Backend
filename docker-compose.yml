@@ -1,12 +1,31 @@
-version: '3'
+version: '3.9'
+
 services:
-    GameStreamer.Backend:
-      image: game-streamer-local:0.0.1
-      ports:
+  GameStreamer-Backend-local:
+    build:
+    context: .
+    dockerfile: Dockerfile
+    ports:
       - "8080:80"
       - "8090:443"
-      environment:
-        ASPNETCORE_ENVIRONMENT: Development
-      volumes:
-        - ${APPDATA}\Microsoft\UserSecrets\:/root/.microsoft/usersecrets
-        - ${APPDATA}\asp.net\https:/root/.aspnet/https/
+    environment:        
+      ASPNETCORE_ENVIRONMENT: "Development"        
+      
+      ConnectionStrings:
+      - GameStreamerContext: "Host=localhost;Database=;user id=;Password=;"
+      
+      MessageBroker:
+        - Host: "localhost"
+        - Port: 5672
+        - VirtualHost: ""
+        - UserName: ""
+        - Password: ""
+      
+      Logger:
+      - Target: Stdout
+      - MinLogLevel: Trace
+      - MaxLogLevel: Fatal
+    
+    Volumes:
+      - ${APPDATA}\Microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${APPDATA}\asp.net\https:/root/.aspnet/https/
