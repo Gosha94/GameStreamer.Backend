@@ -15,13 +15,13 @@ namespace GameStreamer.Application.Tests.Incomers.Commands
 
         [Theory]
         [AutoMoqData]
-        public async Task Handler_Should_ReturnsFailureResult_WhenIncomersNickNameEmpty(
+        public async Task ReturnsFailureResult_WhenIncomersNickNameEmpty(
             [Frozen] Mock<IUnitOfWork> unitOfWorkMock,
             [Frozen] Mock<IIncomerRepository> incomerRepositoryMock
             )
         {
             // Arrange
-            var command = new CreateIncomerCommand(string.Empty);
+            var command = new CreateIncomerCommand();
 
             var handlerUnderTest = new CreateIncomerCommandHandler(
                 incomerRepositoryMock.Object,
@@ -37,7 +37,7 @@ namespace GameStreamer.Application.Tests.Incomers.Commands
 
         [Theory]
         [AutoMoqData]
-        public async Task Handler_Should_ReturnsFailureResult_WhenIncomersNickNameTooLong(
+        public async Task ReturnsFailureResult_WhenIncomersNickNameTooLong(
             [Frozen] Mock<IUnitOfWork> unitOfWorkMock,
             [Frozen] Mock<IIncomerRepository> incomerRepositoryMock
             )

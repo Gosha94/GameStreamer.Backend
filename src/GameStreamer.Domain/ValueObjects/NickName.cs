@@ -1,6 +1,6 @@
 ﻿using GameStreamer.Domain.Shared;
-using GameStreamer.Domain.Primitives;
 using GameStreamer.Domain.Errors;
+using GameStreamer.Domain.Primitives;
 
 namespace GameStreamer.Domain.ValueObjects;
 

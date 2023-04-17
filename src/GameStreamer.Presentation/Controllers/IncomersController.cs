@@ -19,12 +19,11 @@ public sealed class IncomersController : ApiController
     [HttpPost]
     public async Task<IActionResult> RegisterIncomer(CancellationToken cancellationToken)
     {
-
         var command = new CreateIncomerCommand(
             "Test_NickName");
 
         var result = await Sender.Send(command, cancellationToken);
-
+        
         return result.IsSuccess ? Ok() : BadRequest(result.Error);
     }
 

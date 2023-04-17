@@ -33,7 +33,7 @@ internal sealed class CreateIncomerCommandHandler : ICommandHandler<CreateIncome
             nickNameResult.Value);
 
         _incomerRepository.Add(incomer);
-
+        
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
