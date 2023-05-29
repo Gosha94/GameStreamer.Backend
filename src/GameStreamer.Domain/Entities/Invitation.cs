@@ -1,29 +1,32 @@
 ﻿using GameStreamer.Domain.Enums;
+using GameStreamer.Domain.Primitives;
 
 namespace GameStreamer.Domain.Entities
 {
 
-    public sealed class Invitation
+    public sealed class Invitation : Entity
     {
-        public Guid Id { get; }
         public Guid IncomerId { get; }
+
         public Guid RoomId { get; }
+
         public InvitationStatus Status { get; private set; }
+
         public DateTime CreatedOnUtc { get; }
+
         public DateTime? ModifiedOnUtc { get; private set; }
 
-        private Invitation(Guid id, Incomer incomer, Room room)
+        private Invitation(Guid id, Incomer incomer, Room room) : base(id)
         {
-                Id = id;
-                IncomerId = incomer.Id;
-                RoomId = room.Id;
-                Status = InvitationStatus.Pending;
-                CreatedOnUtc = DateTime.UtcNow;
+            IncomerId = incomer.Id;
+            RoomId = room.Id;
+            Status = InvitationStatus.Pending;
+            CreatedOnUtc = DateTime.UtcNow;
         }
 
-        public static Invitation Create(Guid id, Incomer incomer, Room room)
+        public static Invitation Create(Incomer incomer, Room room)
         {
-            return new Invitation(id, incomer, room);
+            return new Invitation(Guid.NewGuid(), incomer, room);
         }
 
         internal void Expire()
@@ -38,6 +41,7 @@ namespace GameStreamer.Domain.Entities
             ModifiedOnUtc = DateTime.UtcNow;
 
             var roomie = Roomie.Create(this);
+
             return roomie;
         }
 

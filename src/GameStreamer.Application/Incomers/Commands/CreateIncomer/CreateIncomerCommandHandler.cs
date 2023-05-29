@@ -9,8 +9,8 @@ namespace GameStreamer.Application.Incomers.Commands.CreateIncomer;
 internal sealed class CreateIncomerCommandHandler : ICommandHandler<CreateIncomerCommand, Result>
 {
 
-    private readonly IIncomerRepository _incomerRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IIncomerRepository _incomerRepository;
 
     public CreateIncomerCommandHandler(
         IIncomerRepository incomerRepository,
@@ -20,15 +20,12 @@ internal sealed class CreateIncomerCommandHandler : ICommandHandler<CreateIncome
         _unitOfWork = unitOfWork;
     }
 
-
     public async Task<Result> Handle(CreateIncomerCommand request, CancellationToken cancellationToken)
     {
         Result<NickName> nickNameResult = NickName.Create(request.NickName);
 
         if (nickNameResult.IsFailure)
         {
-            // Log Error
-
             return Result.Failure(nickNameResult.Error);
         }
 
@@ -36,7 +33,7 @@ internal sealed class CreateIncomerCommandHandler : ICommandHandler<CreateIncome
             nickNameResult.Value);
 
         _incomerRepository.Add(incomer);
-
+        
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return Result.Success();

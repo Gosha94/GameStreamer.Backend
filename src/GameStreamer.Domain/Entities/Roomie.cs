@@ -1,6 +1,8 @@
-﻿namespace GameStreamer.Domain.Entities;
+﻿using GameStreamer.Domain.Primitives;
 
-public sealed class Roomie
+namespace GameStreamer.Domain.Entities;
+
+public sealed class Roomie : Entity
 {
 
     public Guid IncomerId { get; }
@@ -8,17 +10,17 @@ public sealed class Roomie
     public Guid RoomId { get; }
 
     public DateTime CreatedOnUtc { get; }
-    
-    private Roomie(Invitation invitation)
+
+    private Roomie(Guid id, Invitation invitation) : base(id)
     {
         IncomerId = invitation.IncomerId;
         RoomId = invitation.RoomId;
         CreatedOnUtc = DateTime.UtcNow;
     }
-    
+
     public static Roomie Create(Invitation invitation)
     {
-        return new Roomie(invitation);
+        return new Roomie(Guid.NewGuid(), invitation);
     }
 
 }

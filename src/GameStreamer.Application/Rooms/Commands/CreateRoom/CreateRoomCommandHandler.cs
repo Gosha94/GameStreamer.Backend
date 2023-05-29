@@ -1,10 +1,11 @@
-﻿using GameStreamer.Domain.Entities;
-using MediatR;
+﻿using MediatR;
 using GameStreamer.Domain.Repositories;
+using GameStreamer.Domain.Entities;
+using GameStreamer.Domain.Shared;
 
 namespace GameStreamer.Application.Rooms.Commands.CreateRoom;
 
-internal sealed class CreateRoomCommandHandler : IRequestHandler<CreateRoomCommand, Unit>
+internal sealed class CreateRoomCommandHandler : IRequestHandler<CreateRoomCommand, Result>
 {
 
     private readonly IUnitOfWork _unitOfWork;
@@ -21,14 +22,14 @@ internal sealed class CreateRoomCommandHandler : IRequestHandler<CreateRoomComma
         _incomerRepository = incomerRepository;
     }
 
-    public async Task<Unit> Handle(CreateRoomCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(CreateRoomCommand request, CancellationToken cancellationToken)
     {
 
         var incomer = await _incomerRepository.GetByIdAsync(request.IncomerId, cancellationToken);
         
         if (incomer is null)
         {
-                return Unit.Value;
+            return Result.Failure(new Error("IncomerRepository.GetByIdAsync", $"Incomer doesn't exist by Id: {request.IncomerId}."));
         }
 
         var room = Room.Create(Guid.NewGuid(), incomer, request.RoomName);
@@ -43,6 +44,6 @@ internal sealed class CreateRoomCommandHandler : IRequestHandler<CreateRoomComma
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return Unit.Value;
+        return Result.Success();
     }
 }

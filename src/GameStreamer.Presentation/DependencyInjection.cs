@@ -4,5 +4,15 @@ namespace GameStreamer.Presentation;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddPresentationLayer(this IServiceCollection services) => services;
+    public static IServiceCollection AddPresentationLayer(this IServiceCollection services)
+    {
+
+        services.AddSignalR();
+
+        services
+            .AddSwaggerGen()
+            .AddEndpointsApiExplorer();
+
+        return services;
+    }
 }

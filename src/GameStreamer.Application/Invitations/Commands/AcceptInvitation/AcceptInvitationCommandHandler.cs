@@ -1,5 +1,6 @@
 ﻿using GameStreamer.Domain.Entities;
 using GameStreamer.Domain.Enums;
+using GameStreamer.Domain.ExternalProviders;
 using GameStreamer.Domain.Repositories;
 using GameStreamer.Domain.Shared;
 using MediatR;

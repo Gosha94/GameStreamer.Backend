@@ -12,8 +12,28 @@ public static class DomainErrors
         "GameStreamer.InviteToFullRoom",
         "Can't add Incomer to the Room 'cause it's full already.");
 
-    //public static readonly Error AlreadyPassed = new Error(
-    //    "GameStreamer.AlreadyPassed",
-    //    "Can't send invitation for game in the past.");
+    #region NickName
+
+    public static readonly Error EmptyNickName = new Error(
+        "NickName.Empty",
+        "NickName is empty.");
+
+    public static readonly Error TooLongNickName = new Error(
+        "NickName.TooLong",
+        "NickName is too long.");
+
+    #endregion
+
+    #region RoomName
+
+    public static readonly Error EmptyRoomName = new Error(
+        "RoomName.Empty",
+        "RoomName is empty.");
+
+    public static readonly Error TooLongRoomName = new Error(
+        "RoomName.TooLong",
+        "RoomName is too long.");
+
+    #endregion
 
 }

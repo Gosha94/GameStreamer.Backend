@@ -1,40 +1,40 @@
-﻿using Serilog;
-using GameStreamer.Infrastructure;
+﻿using MediatR;
+using GameStreamer.Hubs;
 using GameStreamer.UI.Configuration;
-using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
 
+builder.SetVariablesFromJsonAndEnvironment();
+
+services.AddMediatR(GameStreamer.Application.AssemblyReference.Assembly);
+
 services.InstallServices(
     builder.Configuration,
     typeof(IServiceCollection).Assembly);
 
-builder
-    .Services
-    .Scan(
-        selector => selector
-            .FromAssemblies(
-                GameStreamer.Infrastructure.AssemblyReference.Assembly)
-            .AddClasses(false)
-            .AsImplementedInterfaces()
-            .WithScopedLifetime());
-
-services.AddInfrastructureLayer(builder.Configuration);
-
-services.AddMediatR(GameStreamer.Application.AssemblyReference.Assembly);
-
-services
-    .AddSwaggerGen()
-    .AddEndpointsApiExplorer();
+services.AddSignalR();
 
 services
     .AddControllers()
     .AddApplicationPart(GameStreamer.Presentation.AssemblyReference.Assembly);
 
-//builder.Host.UseSerilog((context, configuration) =>
-//    configuration.ReadFrom.Configuration(context.Configuration));
+services.AddCors(options =>
+{
+    options.AddDefaultPolicy(b =>
+        b.SetIsOriginAllowed(_ => true)
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+});
+
+services.AddHsts(options =>
+{
+    options.Preload = true;
+    options.IncludeSubDomains = true;
+    options.MaxAge = TimeSpan.FromDays(60);
+});
 
 WebApplication app = builder.Build();
 
@@ -42,11 +42,11 @@ var logger = app.Logger;
 var lifetime = app.Lifetime;
 var env = app.Environment;
 
-var configuration = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")
-    .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
-    .AddEnvironmentVariables()
-    .Build();
+//new ConfigurationBuilder()
+//    .AddJsonFile("appsettings.json")
+//    .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
+//    .AddEnvironmentVariables()
+//    .Build();
 
 lifetime.ApplicationStarted
     .Register(() =>
@@ -57,29 +57,25 @@ lifetime.ApplicationStarted
 
 if (app.Environment.IsDevelopment())
 {
+    app.UseCors();
 
     app.UseDeveloperExceptionPage();
 
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    // In Production we have to use proxy server instead Asp.net Core redirection
+    //app.UseExceptionHandler("/Error");
+    //app.UseHsts();
+}
 
-//app.UseCors();
-
-//app.MapHub<RoomsHub>("/lobbies");
-
-//app.MapHub<GameHub>("/game");
-
-//InitializeDatabase(app);
-
-//app.UseSerilogRequestLogging();
+app.MapHub<RoomsHub>("/lobbies");
+app.MapHub<GameHub>("/game");
 
 app.UseHttpsRedirection();
-
-//app.UseAuthentication();
-
-//app.UseAuthorization();
+app.UseRouting();
 
 app.MapControllers();
-
 app.Run();
